@@ -1,0 +1,1 @@
+# Quote. Serves quotes.

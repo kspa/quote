@@ -26,12 +26,13 @@ COPY . .
 
 # Fetch dependencies.
 # Using go get.
-RUN go get -d -v
+#RUN go get -d -v
 
 # Using go mod.
-# RUN go mod download
-# RUN go mod verify# Build the binary.
+RUN go mod download
+RUN go mod verify
 
+# Build the binary.
 RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /go/bin/quote
 
 ############################
@@ -52,5 +53,5 @@ USER appuser:appuser
 # Port on which the service will be exposed.
 EXPOSE 8080
 
-# Run the hello binary.
+# Run the quote binary.
 ENTRYPOINT ["/go/bin/quote"]
